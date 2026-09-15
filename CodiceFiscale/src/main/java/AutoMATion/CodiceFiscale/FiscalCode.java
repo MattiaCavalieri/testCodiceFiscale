@@ -1,62 +1,75 @@
 package AutoMATion.CodiceFiscale;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FiscalCode {
+import abstractComponent.AbstractComponent;
 
-	public static void main(String[] args) {
-		
-		// inizializzazione driver
-		WebDriver driver = new ChromeDriver();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-		driver.manage().window().maximize();
-		
-		// landing page
+public class FiscalCode extends AbstractComponent {
+
+	WebDriver driver;
+
+	@FindBy(className = "fc-cta-consent")
+	WebElement accettaConsensi;
+
+	By cognome = By.id("input_cognome");
+	By nome = By.id("input_nome");
+	By luogoNascita = By.name("luogo");
+	By provinciaNascita = By.name("prov");
+	By giornoNascita = By.cssSelector("#calcolo > div.field.data > div.input > select:nth-child(1)");
+	By meseNascita = By.cssSelector("#calcolo > div.field.data > div.input > select:nth-child(2)");
+	By annoNascita = By.cssSelector("#calcolo > div.field.data > div.input > select:nth-child(3)");
+
+	@FindBy(css = "#calcolo > div.submit > input[type=submit]")
+	WebElement calcolaCodiceFiscale;
+
+	By codiceFiscaleGenerato = By.cssSelector("#calcolo > div.field.cf > div.input");
+
+	public FiscalCode(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+
+	public void goTo() {
 		driver.get("https://www.codicefiscaleonline.com/");
+	}
+	
+	public void accettaConsensi() {
+		accettaConsensi.click();
+	}
 
-		// accetta i consensi
-		driver.findElement(By.className("fc-cta-consent")).click();
+	public void insertData() {
+		driver.findElement(cognome).sendKeys("Cavalieri Manasse");
+		driver.findElement(nome).sendKeys("Mattia");
+		driver.findElement(luogoNascita).sendKeys("Milano");
+		driver.findElement(provinciaNascita).sendKeys("Mi");
+		// giorno
+		WebElement giorno = driver.findElement(giornoNascita);
+		Select giornoN = new Select(giorno);
+		giornoN.selectByVisibleText("06");
+		// mese
+		WebElement mese = driver.findElement(meseNascita);
+		Select meseN = new Select(mese);
+		meseN.selectByVisibleText("12");
+		// anno
+		WebElement anno = driver.findElement(annoNascita);
+		Select annoN = new Select(anno);
+		annoN.selectByVisibleText("1980");
+	}
 
-		// inserimento dei dati
-		driver.findElement(By.id("input_cognome")).sendKeys("Cavalieri Manasse");
-		driver.findElement(By.id("input_nome")).sendKeys("Mattia");
-		driver.findElement(By.name("luogo")).sendKeys("Milano");
-		driver.findElement(By.name("prov")).sendKeys("Mi");
+	public void calcolaCF() {
+		calcolaCodiceFiscale.click();
+	}
 
-		// seleziona il giorno di nascita
-		WebElement giornoNascita = driver
-				.findElement(By.cssSelector("#calcolo > div.field.data > div.input > select:nth-child(1)"));
-		Select giorno = new Select(giornoNascita);
-		giorno.selectByVisibleText("06");
-
-		// seleziona il mese di nascita
-		WebElement meseNascita = driver
-				.findElement(By.cssSelector("#calcolo > div.field.data > div.input > select:nth-child(2)"));
-		Select mese = new Select(meseNascita);
-		mese.selectByVisibleText("12");
-
-		// seleziona l'anno di nascita
-		WebElement annoNascita = driver
-				.findElement(By.cssSelector("#calcolo > div.field.data > div.input > select:nth-child(3)"));
-		Select anno = new Select(annoNascita);
-		anno.selectByVisibleText("1980");
-		
-		// calcola codice fiscale
-		driver.findElement(By.cssSelector("#calcolo > div.submit > input[type=submit]")).click();
-		
-		// recupera il codice fiscale generato
-		wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#calcolo > div.field.cf > div.input")));
-		String CF = driver.findElement(By.cssSelector("#calcolo > div.field.cf > div.input")).getText();
-		System.out.println("Il codice fiscale generato è: " + CF);
+	public String recuperaCF() {
+		waitForElementToAppear(codiceFiscaleGenerato);
+		String CF = driver.findElement(codiceFiscaleGenerato).getText();
+		return CF;
 	}
 
 }
