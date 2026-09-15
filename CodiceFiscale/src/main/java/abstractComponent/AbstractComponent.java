@@ -37,7 +37,6 @@ public class AbstractComponent {
 		driver.get("https://www.codicefiscaleonline.com/");
 	}
 	
-	
 	public FiscalCode launchAutomation() {
 		WebDriver driver = initializeDriver();
 		FiscalCode fiscalCode = new FiscalCode(driver);
