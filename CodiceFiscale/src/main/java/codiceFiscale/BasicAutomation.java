@@ -1,4 +1,4 @@
-package AutoMATion.CodiceFiscale;
+package codiceFiscale;
 
 import java.time.Duration;
 

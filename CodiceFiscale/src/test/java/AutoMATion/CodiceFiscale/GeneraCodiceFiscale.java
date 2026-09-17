@@ -8,6 +8,7 @@ public class GeneraCodiceFiscale {
 	@Test
 	public void generateFiscalCode() {
 		
+		
 	}
 
 }

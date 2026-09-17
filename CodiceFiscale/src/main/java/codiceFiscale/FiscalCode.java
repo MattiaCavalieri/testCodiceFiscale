@@ -1,4 +1,4 @@
-package AutoMATion.CodiceFiscale;
+package codiceFiscale;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
