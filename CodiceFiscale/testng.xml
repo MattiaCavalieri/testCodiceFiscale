@@ -3,7 +3,7 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="AutoMATion.CodiceFiscale.GeneraCoficeFiscale"/>
+      <class name="AutoMATion.CodiceFiscale.GeneraCodiceFiscale"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

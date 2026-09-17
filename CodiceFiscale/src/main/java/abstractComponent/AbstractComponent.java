@@ -21,26 +21,9 @@ public class AbstractComponent {
 		PageFactory.initElements(driver, this);
 	}
 
-	public WebDriver initializeDriver() {
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		return driver;
-	}
-
 	public void waitForElementToAppear(By locator) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-	}
-
-	public void goTo() {
-		driver.get("https://www.codicefiscaleonline.com/");
-	}
-
-	public FiscalCode launchAutomation() {
-		WebDriver driver = initializeDriver();
-		FiscalCode fiscalCode = new FiscalCode(driver);
-		fiscalCode.goTo();
-		return fiscalCode;
 	}
 
 }
