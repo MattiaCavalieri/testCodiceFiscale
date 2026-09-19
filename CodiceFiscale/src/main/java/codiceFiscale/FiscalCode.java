@@ -6,12 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-
 import abstractComponent.AbstractComponent;
+import data.Persona;
 
 public class FiscalCode extends AbstractComponent {
 
 	WebDriver driver;
+	Persona persona;
 
 	@FindBy(className = "fc-cta-consent")
 	WebElement accettaConsensi;
@@ -20,6 +21,7 @@ public class FiscalCode extends AbstractComponent {
 	By nome = By.id("input_nome");
 	By luogoNascita = By.name("luogo");
 	By provinciaNascita = By.name("prov");
+	By sesso = By.name("sesso");
 	By giornoNascita = By.cssSelector("#calcolo > div.field.data > div.input > select:nth-child(1)");
 	By meseNascita = By.cssSelector("#calcolo > div.field.data > div.input > select:nth-child(2)");
 	By annoNascita = By.cssSelector("#calcolo > div.field.data > div.input > select:nth-child(3)");
@@ -33,6 +35,7 @@ public class FiscalCode extends AbstractComponent {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		persona = generaPersona();
 	}
 
 	public void goTo() {
@@ -44,14 +47,19 @@ public class FiscalCode extends AbstractComponent {
 	}
 
 	public void insertData() {
-		driver.findElement(cognome).sendKeys("Cavalieri Manasse");
-		driver.findElement(nome).sendKeys("Mattia");
-		driver.findElement(luogoNascita).sendKeys("Milano");
-		driver.findElement(provinciaNascita).sendKeys("Mi");
+		driver.findElement(cognome).sendKeys(persona.getCognome());
+		driver.findElement(nome).sendKeys(persona.getNome());
+		driver.findElement(luogoNascita).sendKeys("Roma");
+		driver.findElement(provinciaNascita).sendKeys("RM");
+		
+		// sesso
+		Select sessoP = new Select(driver.findElement(sesso));
+		sessoP.selectByVisibleText(persona.getSesso().getValoreForm());
+		
 		// giorno
 		WebElement giorno = driver.findElement(giornoNascita);
 		Select giornoN = new Select(giorno);
-		giornoN.selectByVisibleText("06");
+		giornoN.selectByVisibleText("12");
 		// mese
 		WebElement mese = driver.findElement(meseNascita);
 		Select meseN = new Select(mese);
