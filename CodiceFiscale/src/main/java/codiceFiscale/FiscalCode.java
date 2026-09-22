@@ -13,6 +13,7 @@ public class FiscalCode extends AbstractComponent {
 
 	WebDriver driver;
 	Persona persona;
+	String CF;
 
 	@FindBy(className = "fc-cta-consent")
 	WebElement accettaConsensi;
@@ -41,7 +42,7 @@ public class FiscalCode extends AbstractComponent {
 	public void goTo() {
 		driver.get("https://www.codicefiscaleonline.com/");
 	}
-	
+
 	public void accettaConsensi() {
 		accettaConsensi.click();
 	}
@@ -51,11 +52,11 @@ public class FiscalCode extends AbstractComponent {
 		driver.findElement(nome).sendKeys(persona.getNome());
 		driver.findElement(luogoNascita).sendKeys("Roma");
 		driver.findElement(provinciaNascita).sendKeys("RM");
-		
+
 		// sesso
 		Select sessoP = new Select(driver.findElement(sesso));
 		sessoP.selectByVisibleText(persona.getSesso().getValoreForm());
-		
+
 		// giorno
 		WebElement giorno = driver.findElement(giornoNascita);
 		Select giornoN = new Select(giorno);
@@ -76,8 +77,15 @@ public class FiscalCode extends AbstractComponent {
 
 	public String recuperaCF() {
 		waitForElementToAppear(codiceFiscaleGenerato);
-		String CF = driver.findElement(codiceFiscaleGenerato).getText();
+		CF = driver.findElement(codiceFiscaleGenerato).getText();
 		return CF;
+	}
+
+	public void stampaDatiCF() {
+		System.out.println("Utente generato: " + "\n");
+		System.out.println("Nome: " + persona.getNome());
+		System.out.println("Cognome: " + persona.getCognome());
+		System.out.println("Codice Fiscale: " + recuperaCF());
 	}
 
 }

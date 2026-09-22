@@ -13,7 +13,7 @@ public class GeneraCodiceFiscale extends BaseTest {
 		fiscalCode.accettaConsensi();
 		fiscalCode.insertData();
 		fiscalCode.calcolaCF();
-		System.out.println(fiscalCode.recuperaCF());
+		fiscalCode.stampaDatiCF();
 	}
 
 }
