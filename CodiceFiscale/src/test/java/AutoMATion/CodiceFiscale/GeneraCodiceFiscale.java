@@ -7,10 +7,8 @@ import testComponents.BaseTest;
 
 public class GeneraCodiceFiscale extends BaseTest {
 	
-	
 	@Test
 	public void generateFiscalCode() {
-		
 		FiscalCode fiscalCode = launchAutomation();
 		fiscalCode.accettaConsensi();
 		fiscalCode.insertData();
