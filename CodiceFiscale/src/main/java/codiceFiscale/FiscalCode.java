@@ -86,6 +86,8 @@ public class FiscalCode extends AbstractComponent {
 		System.out.println("Nome: " + persona.getNome());
 		System.out.println("Cognome: " + persona.getCognome());
 		System.out.println("Codice Fiscale: " + recuperaCF());
+		// Benvenuto {NOME} in BNL!
+		System.out.println("Benvenuto " + persona.getNome() + " in BNL!");
 	}
 
 }

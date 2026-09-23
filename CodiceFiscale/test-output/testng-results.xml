@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-09-22T16:31:16 CEST" name="Default suite" finished-at="2026-09-22T16:31:41 CEST" duration-ms="25140">
+  <suite started-at="2026-09-23T16:55:14 CEST" name="Default suite" finished-at="2026-09-23T16:55:47 CEST" duration-ms="32317">
     <groups>
     </groups>
-    <test started-at="2026-09-22T16:31:16 CEST" name="Default test" finished-at="2026-09-22T16:31:41 CEST" duration-ms="25140">
+    <test started-at="2026-09-23T16:55:14 CEST" name="Default test" finished-at="2026-09-23T16:55:47 CEST" duration-ms="32317">
       <class name="AutoMATion.CodiceFiscale.GeneraCodiceFiscale">
-        <test-method signature="generateFiscalCode()[pri:0, instance:AutoMATion.CodiceFiscale.GeneraCodiceFiscale@191ae03f]" started-at="2026-09-22T16:31:16 CEST" name="generateFiscalCode" finished-at="2026-09-22T16:31:41 CEST" duration-ms="24674" status="PASS">
+        <test-method signature="generateFiscalCode()[pri:0, instance:AutoMATion.CodiceFiscale.GeneraCodiceFiscale@799f10e1]" started-at="2026-09-23T16:55:14 CEST" name="generateFiscalCode" finished-at="2026-09-23T16:55:47 CEST" duration-ms="32170" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- generateFiscalCode -->
