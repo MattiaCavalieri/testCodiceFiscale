@@ -58,7 +58,7 @@
 
 
 	<build>
-		<finalName>generatore-codice-fiscale</finalName>
+		
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven
 			defaults (may be moved to parent pom) -->
 			<plugins>
@@ -103,20 +103,6 @@
 				<plugin>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>3.6.1</version>
-					<executions>
-						<execution>
-							<phase>package</phase>
-							<goals>
-								<goal>shade-1</goal>
-							</goals>
-							<configuration>
-								<transformers>
-									<transformer></transformer>
-								</transformers>
-
-							</configuration>
-						</execution>
-					</executions>
 				</plugin>
 
 				<plugin>
