@@ -16,7 +16,7 @@ public class BaseTest {
 		driver.manage().window().maximize();
 		return driver;
 	}
-	
+
 	public FiscalCode launchAutomation() {
 		WebDriver driver = initializeDriver();
 		fiscalCode = new FiscalCode(driver);

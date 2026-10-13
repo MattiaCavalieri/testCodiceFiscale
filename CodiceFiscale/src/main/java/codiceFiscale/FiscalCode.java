@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
 import abstractComponent.AbstractComponent;
 import data.Persona;
 
@@ -38,6 +39,7 @@ public class FiscalCode extends AbstractComponent {
 		PageFactory.initElements(driver, this);
 		persona = generaPersona();
 	}
+	
 
 	public void goTo() {
 		driver.get("https://www.codicefiscaleonline.com/");
